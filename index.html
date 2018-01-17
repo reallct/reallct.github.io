@@ -372,23 +372,10 @@
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。</p>
 <ol>
 <li>命令行</li>
-<li>mysql</li>
-<li>show variables like ‘character<em>set</em>%’;</li>
-<li><p>发现很多不一样，必须修改为utf8</p>
-<p> <code>set character_set_client=utf8
- set character_set_connection=utf8;
- set character_set_database=utf8;
- set character_set_results=utf8;
- set character_set_server=utf8;
- set character_set_system=utf8;
- set collation_database=utf8_general_ci;
- set collation_connection=utf8_general_ci;</code></p>
-</li>
-</ol>
-<ol>
-<li><p>修改my.ini在[mysqld]中增加</p>
-<p> ‘character_set_server=utf8<br> init_connect=’SET NAMES utf8’</p>
-</li>
+<li>进入mysql</li>
+<li>输入命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;character_set_%&apos;;</span><br></pre></td></tr></table></figure></li>
+<li>发现很多不一样，必须修改为utf8<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set character_set_client=utf8</span><br><span class="line">set character_set_connection=utf8;</span><br><span class="line">set character_set_database=utf8;</span><br><span class="line">set character_set_results=utf8;</span><br><span class="line">set character_set_server=utf8;</span><br><span class="line">set character_set_system=utf8;</span><br><span class="line">set collation_database=utf8_general_ci;</span><br><span class="line">set collation_connection=utf8_general_ci;</span><br></pre></td></tr></table></figure></li>
+<li>修改my.ini在[mysqld]中增加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=&apos;SET NAMES utf8</span><br></pre></td></tr></table></figure></li>
 </ol>
 
           
@@ -520,87 +507,10 @@
       
         
           
-            <h3 id="下载驱动，导入到eclipse中"><a href="#下载驱动，导入到eclipse中" class="headerlink" title="下载驱动，导入到eclipse中"></a>下载驱动，导入到eclipse中</h3><p>mysql-connector-java-5.1.40.zip</p>
-<p>链接：<a href="https://pan.baidu.com/s/1bqR7WfH" target="_blank" rel="noopener">https://pan.baidu.com/s/1bqR7WfH</a> ，密码：zmgb</p>
-<h3 id="数据库连接核心代码-Connection-jsp"><a href="#数据库连接核心代码-Connection-jsp" class="headerlink" title="数据库连接核心代码 Connection.jsp"></a>数据库连接核心代码 Connection.jsp</h3><pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;%
-request.setCharacterEncoding(&quot;UTF-8&quot;);
-//亲测，没有数据就会乱码
+            <h3 id="下载驱动，导入到eclipse中"><a href="#下载驱动，导入到eclipse中" class="headerlink" title="下载驱动，导入到eclipse中"></a>下载驱动，导入到eclipse中</h3><p>mysql-connector-java-5.1.40.zip<br><a href="https://pan.baidu.com/s/1bqR7WfH" target="_blank" rel="noopener">点这里下载</a>，密码：zmgb</p>
+<h3 id="数据库连接核心代码-Connection-jsp"><a href="#数据库连接核心代码-Connection-jsp" class="headerlink" title="数据库连接核心代码 Connection.jsp"></a>数据库连接核心代码 Connection.jsp</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">&lt;%</span><br><span class="line">request.setCharacterEncoding(&quot;UTF-8&quot;);</span><br><span class="line">//亲测，没有数据就会乱码</span><br><span class="line">String driverName = &quot;com.mysql.jdbc.Driver&quot;;</span><br><span class="line">//定义驱动程序	</span><br><span class="line">String conurl = &quot;jdbc:mysql://localhost:3306/webB&quot;;</span><br><span class="line">//定义url对象</span><br><span class="line">String userName = &quot;root&quot;;</span><br><span class="line">//定义数据库名</span><br><span class="line">String userPasswd = &quot;&quot;;</span><br><span class="line">//定义密码 </span><br><span class="line">Class.forName(driverName);</span><br><span class="line">//加载jdbc驱动程序</span><br><span class="line">Connection con = DriverManager.getConnection(conurl, userName, userPasswd);</span><br><span class="line">//连接数据库</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="一个具体的例子，读取数据库，打印学生信息-selectUserInfo-jsp"><a href="#一个具体的例子，读取数据库，打印学生信息-selectUserInfo-jsp" class="headerlink" title="一个具体的例子，读取数据库，打印学生信息 selectUserInfo.jsp"></a>一个具体的例子，读取数据库，打印学生信息 selectUserInfo.jsp</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">我读到数据库了哈哈哈哈哈哈哈哈</span><br><span class="line">&lt;hr&gt;</span><br><span class="line">&lt;table border=1&gt;</span><br><span class="line">	&lt;tr&gt;</span><br><span class="line">		&lt;td&gt;id&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;姓名&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;密码&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;出生日期&lt;/td&gt;</span><br><span class="line">		&lt;td&gt;爱好&lt;/td&gt;</span><br><span class="line">	&lt;/tr&gt;</span><br><span class="line">	</span><br><span class="line">&lt;%@ include file=&apos;Connection.jsp&apos;%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">	System.out.println(&quot;数据库 已连接&quot;);</span><br><span class="line"></span><br><span class="line">	Statement s = con.createStatement();</span><br><span class="line">	//定义查询数据库的对象</span><br><span class="line"></span><br><span class="line">	String sql = &quot;SELECT*  FROM userInfo &quot;;</span><br><span class="line">			</span><br><span class="line">	ResultSet rs = s.executeQuery(sql);</span><br><span class="line">	//得到查询结果集</span><br><span class="line"></span><br><span class="line">	while (rs.next()) &#123;</span><br><span class="line">		out.println(&quot;&lt;tr&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;id&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;name&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;password&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;sex&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;birthdate&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;interest&quot;) + &quot;&lt;/td&gt;&quot;);</span><br><span class="line">		out.println(&quot;&lt;/tr&gt;&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	//一次循环输出一条记录</span><br><span class="line">	rs.close();</span><br><span class="line">	s.close();</span><br><span class="line">	con.close();</span><br><span class="line">	//关闭数据库，释放资源</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/table&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 
-String driverName = &quot;com.mysql.jdbc.Driver&quot;;
-//定义驱动程序    
-
-String conurl = &quot;jdbc:mysql://localhost:3306/webB&quot;;
-//定义url对象
-
-String userName = &quot;root&quot;;
-//定义数据库名
-
-String userPasswd = &quot;&quot;;
-//定义密码 
-
-Class.forName(driverName);
-//加载jdbc驱动程序
-
-Connection con = DriverManager.getConnection(conurl, userName, userPasswd);
-//连接数据库
-%&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><h3 id="一个具体的例子，读取数据库，打印学生信息-selectUserInfo-jsp"><a href="#一个具体的例子，读取数据库，打印学生信息-selectUserInfo-jsp" class="headerlink" title="一个具体的例子，读取数据库，打印学生信息 selectUserInfo.jsp"></a>一个具体的例子，读取数据库，打印学生信息 selectUserInfo.jsp</h3><pre><code>&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt;
-&lt;html&gt;
-&lt;body&gt;
-我读到数据库了哈哈哈哈哈哈哈哈
-&lt;hr&gt;
-&lt;table border=1&gt;
-    &lt;tr&gt;
-        &lt;td&gt;id&lt;/td&gt;
-        &lt;td&gt;姓名&lt;/td&gt;
-        &lt;td&gt;密码&lt;/td&gt;
-        &lt;td&gt;性别&lt;/td&gt;
-        &lt;td&gt;出生日期&lt;/td&gt;
-        &lt;td&gt;爱好&lt;/td&gt;
-    &lt;/tr&gt;
-
-
-
-&lt;%@ include file=&apos;Connection.jsp&apos;%&gt;
-&lt;%
-
-        System.out.println(&quot;数据库 已连接&quot;);
-
-        Statement s = con.createStatement();
-        //定义查询数据库的对象
-
-        String sql = &quot;SELECT*  FROM userInfo &quot;;
-
-        ResultSet rs = s.executeQuery(sql);
-        //得到查询结果集
-
-        while (rs.next()) {
-            out.println(&quot;&lt;tr&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;id&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;name&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;password&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;sex&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;birthdate&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;interest&quot;) + &quot;&lt;/td&gt;&quot;);
-            out.println(&quot;&lt;/tr&gt;&quot;);
-        }
-        //一次循环输出一条记录
-        rs.close();
-        s.close();
-        con.close();
-        //关闭数据库，释放资源
-    %&gt;
-&lt;/table&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
           
         
       

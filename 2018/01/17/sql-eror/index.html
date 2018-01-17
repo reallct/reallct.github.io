@@ -79,18 +79,18 @@
 
 
 
-<meta name="description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 mysql show variables like ‘characterset%’; 发现很多不一样，必须修改为utf8">
+<meta name="description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 进入mysql 输入命令1show variables like &amp;apos;character_set_%&amp;apos;;">
 <meta name="keywords" content="sql">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql中文是？？？的情况">
 <meta property="og:url" content="http://yoursite.com/2018/01/17/sql-eror/index.html">
 <meta property="og:site_name" content="reallct&#39;s blog">
-<meta property="og:description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 mysql show variables like ‘characterset%’; 发现很多不一样，必须修改为utf8">
+<meta property="og:description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 进入mysql 输入命令1show variables like &amp;apos;character_set_%&amp;apos;;">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-01-17T13:51:08.583Z">
+<meta property="og:updated_time" content="2018-01-17T14:16:51.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql中文是？？？的情况">
-<meta name="twitter:description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 mysql show variables like ‘characterset%’; 发现很多不一样，必须修改为utf8">
+<meta name="twitter:description" content="问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。  命令行 进入mysql 输入命令1show variables like &amp;apos;character_set_%&amp;apos;;">
 
 
 
@@ -369,23 +369,10 @@
 <h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。</p>
 <ol>
 <li>命令行</li>
-<li>mysql</li>
-<li>show variables like ‘character<em>set</em>%’;</li>
-<li><p>发现很多不一样，必须修改为utf8</p>
-<p> <code>set character_set_client=utf8
- set character_set_connection=utf8;
- set character_set_database=utf8;
- set character_set_results=utf8;
- set character_set_server=utf8;
- set character_set_system=utf8;
- set collation_database=utf8_general_ci;
- set collation_connection=utf8_general_ci;</code></p>
-</li>
-</ol>
-<ol>
-<li><p>修改my.ini在[mysqld]中增加</p>
-<p> ‘character_set_server=utf8<br> init_connect=’SET NAMES utf8’</p>
-</li>
+<li>进入mysql</li>
+<li>输入命令<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">show variables like &apos;character_set_%&apos;;</span><br></pre></td></tr></table></figure></li>
+<li>发现很多不一样，必须修改为utf8<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">set character_set_client=utf8</span><br><span class="line">set character_set_connection=utf8;</span><br><span class="line">set character_set_database=utf8;</span><br><span class="line">set character_set_results=utf8;</span><br><span class="line">set character_set_server=utf8;</span><br><span class="line">set character_set_system=utf8;</span><br><span class="line">set collation_database=utf8_general_ci;</span><br><span class="line">set collation_connection=utf8_general_ci;</span><br></pre></td></tr></table></figure></li>
+<li>修改my.ini在[mysqld]中增加<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">character_set_server=utf8</span><br><span class="line">init_connect=&apos;SET NAMES utf8</span><br></pre></td></tr></table></figure></li>
 </ol>
 
       
