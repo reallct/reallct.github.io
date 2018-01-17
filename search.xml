@@ -1,21 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[mysql中文是？？？的情况]]></title>
+    <url>%2F2018%2F01%2F17%2Fsql-eror%2F</url>
+    <content type="text"><![CDATA[问题描述往数据库中提交数据（如注册用户）时，eclipse直接syso出的没问题，但数据库中该显示中文的地方全都是？？？？ 解决方法查阅资料后发现要在命令行改下面的编码，但是每次改完重启mysql后就又变回去了，最终得知需要在mysql安装路径修改my.ini文件。 命令行 mysql show variables like ‘characterset%’; 发现很多不一样，必须修改为utf8 set character_set_client=utf8 set character_set_connection=utf8; set character_set_database=utf8; set character_set_results=utf8; set character_set_server=utf8; set character_set_system=utf8; set collation_database=utf8_general_ci; set collation_connection=utf8_general_ci; 修改my.ini在[mysqld]中增加 ‘character_set_server=utf8 init_connect=’SET NAMES utf8’]]></content>
+      <tags>
+        <tag>sql</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[java连接mysql]]></title>
+    <url>%2F2018%2F01%2F17%2Fjava-sql%2F</url>
+    <content type="text"><![CDATA[下载驱动，导入到eclipse中mysql-connector-java-5.1.40.zip 链接：https://pan.baidu.com/s/1bqR7WfH ，密码：zmgb 数据库连接核心代码 Connection.jsp&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt; &lt;html&gt; &lt;head&gt; &lt;% request.setCharacterEncoding(&quot;UTF-8&quot;); //亲测，没有数据就会乱码 String driverName = &quot;com.mysql.jdbc.Driver&quot;; //定义驱动程序 String conurl = &quot;jdbc:mysql://localhost:3306/webB&quot;; //定义url对象 String userName = &quot;root&quot;; //定义数据库名 String userPasswd = &quot;&quot;; //定义密码 Class.forName(driverName); //加载jdbc驱动程序 Connection con = DriverManager.getConnection(conurl, userName, userPasswd); //连接数据库 %&gt; &lt;/head&gt; &lt;body&gt; &lt;/body&gt; &lt;/html&gt; 一个具体的例子，读取数据库，打印学生信息 selectUserInfo.jsp&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; import=&quot;java.sql.*&quot;%&gt; &lt;html&gt; &lt;body&gt; 我读到数据库了哈哈哈哈哈哈哈哈 &lt;hr&gt; &lt;table border=1&gt; &lt;tr&gt; &lt;td&gt;id&lt;/td&gt; &lt;td&gt;姓名&lt;/td&gt; &lt;td&gt;密码&lt;/td&gt; &lt;td&gt;性别&lt;/td&gt; &lt;td&gt;出生日期&lt;/td&gt; &lt;td&gt;爱好&lt;/td&gt; &lt;/tr&gt; &lt;%@ include file=&apos;Connection.jsp&apos;%&gt; &lt;% System.out.println(&quot;数据库 已连接&quot;); Statement s = con.createStatement(); //定义查询数据库的对象 String sql = &quot;SELECT* FROM userInfo &quot;; ResultSet rs = s.executeQuery(sql); //得到查询结果集 while (rs.next()) { out.println(&quot;&lt;tr&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;id&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;name&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;password&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;sex&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;birthdate&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;td&gt;&quot; + rs.getString(&quot;interest&quot;) + &quot;&lt;/td&gt;&quot;); out.println(&quot;&lt;/tr&gt;&quot;); } //一次循环输出一条记录 rs.close(); s.close(); con.close(); //关闭数据库，释放资源 %&gt; &lt;/table&gt; &lt;/body&gt; &lt;/html&gt;]]></content>
+      <tags>
+        <tag>javaEE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[杰普的这些日子]]></title>
+    <url>%2F2018%2F01%2F17%2Fexperience%2F</url>
+    <content type="text"><![CDATA[考研银行11.05 全国笔试（上海） 11.23 软开面试（上海） 12.03 省分信科岗面试（太原） 12.21 软开体检 （上海） 12.25 省分信科岗体检（太原） 01.15 软开签约（北京） 一些零碎下面是我这几个月的行程，哈哈哈感觉很酸爽 09.01 河津-侯马-太原 09.02 太原-昆山 09.22 昆山-无锡 09.24 无锡-昆山 10.01 昆山-苏州 10.07 苏州-昆山 11.05 昆山-上海-昆山 11.22 昆山-上海 11.23 上海-昆山 12.01 昆山-上海 12.02 上海-太原 12.03 太原-上海 12.04 上海-昆山 12.20 昆山-上海 12.21 上海-太原 12.27 太原-上海-昆山 01.01 昆山-上海 01.03 上海-昆山 01.11 昆山-南京-运城-河津 01.14 河津-侯马-北京 01.15 北京-上海]]></content>
+      <tags>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[lcttttt]]></title>
     <url>%2F2018%2F01%2F06%2Flcttttt%2F</url>
     <content type="text"><![CDATA[你好你好你好 你好嗯嗯 你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服 你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服 你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服 你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服你hi昂首嗲话搜帝豪is的厚爱是佛个好事发后爱好舒服 啊搜覅哈 阿萨德克服过去哦诶 可无法回去哦晚饭后期 ksadgqfowiufhqo 按时打卡成功富奥无符号五福 客户GV科技 （前有一个空格）居中标签 你好。我是里欧伤痛 留后破ＩＰＯｉ]]></content>
       <tags>
         <tag>me mysql</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[title]]></title>
-    <url>%2F2018%2F01%2F04%2Ftitle%2F</url>
-    <content type="text"></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2018%2F01%2F03%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>

@@ -4,6 +4,57 @@
 
     
   <url>
+    <loc>http://yoursite.com/2018/01/17/sql-eror/</loc>
+    <lastmod>2018-01-17T13:51:08.583Z</lastmod>
+    <data>
+        <display>
+        <title>mysql中文是？？？的情况</title>
+        <pubTime>2018-01-17T13:38:01.000Z</pubTime>
+        
+        <tag>sql</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/01/17/java-sql/</loc>
+    <lastmod>2018-01-17T13:34:17.866Z</lastmod>
+    <data>
+        <display>
+        <title>java连接mysql</title>
+        <pubTime>2018-01-17T13:13:15.000Z</pubTime>
+        
+        <tag>javaEE</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://yoursite.com/2018/01/17/experience/</loc>
+    <lastmod>2018-01-17T13:09:45.144Z</lastmod>
+    <data>
+        <display>
+        <title>杰普的这些日子</title>
+        <pubTime>2018-01-17T12:58:48.000Z</pubTime>
+        
+        <tag>总结</tag>
+         
+         
+           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://yoursite.com/2018/01/06/lcttttt/</loc>
     <lastmod>2018-01-06T14:37:36.738Z</lastmod>
     <data>
@@ -21,34 +72,4 @@
 
     
     
-    
-  <url>
-    <loc>http://yoursite.com/2018/01/04/title/</loc>
-    <lastmod>2018-01-04T04:17:20.691Z</lastmod>
-    <data>
-        <display>
-        <title>title</title>
-        <pubTime>2018-01-04T04:17:20.000Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://yoursite.com/2018/01/03/hello-world/</loc>
-    <lastmod>2018-01-03T13:46:16.437Z</lastmod>
-    <data>
-        <display>
-        <title>Hello World</title>
-        <pubTime>2018-01-03T13:46:16.432Z</pubTime>
-        
-         
-           
-        </display>
-    </data>
-    </url>
-
 </urlset>
